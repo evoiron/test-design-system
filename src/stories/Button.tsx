@@ -46,7 +46,7 @@ export const Button = ({
       style={{
         backgroundColor,
         border: "6px solid black",
-        paddingLeft: "40px"
+        padding: 0
       }}
       {...props}
     >
