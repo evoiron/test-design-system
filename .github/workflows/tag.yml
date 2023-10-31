@@ -12,14 +12,14 @@ jobs:
          echo "$(pwd)"
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-         NPM_VERSION=$(npm show aristid-ds version) >> $GITHUB_OUTPUT
+         NPM_VERSION=$(npm show aristid-ds version) >> $GITHUB_ENV
          echo "Package version $LATEST"
-         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') >> $GITHUB_OUTPUT
+         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') >> $GITHUB_ENV
          echo "package.json version $PACKAGE_VERSION"
      - name: print values
        run: |
-         echo "${{ steps.vars.outputs.NPM_VERSION }}"
-         echo "${{ steps.vars.outputs.PACKAGE_VERSION }}"
+         echo "${{ env.NPM_VERSION }}"
+         echo "${{ env.PACKAGE_VERSION }}"
      - name: check equality
-       if: ${{ steps.vars.outputs.NPM_VERSION }} == ${{ steps.vars.outputs.PACKAGE_VERSION }}
+       if: ${{ env.NPM_VERSION }} == ${{ env.PACKAGE_VERSION }}
        run : echo "versions match !!"
