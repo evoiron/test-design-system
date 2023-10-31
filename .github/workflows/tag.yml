@@ -7,16 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v1
-     - name: validate semVer
-       if:  ! $GITHUB_REF_NAME =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?$
-       run : exit 1
      - name: GitHub Tag Name example
        run: |
          echo "$(pwd)"
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-         LATEST=$(npm show aristid-ds version)
+         NPM_VERSION=$(npm show aristid-ds version) >> $GITHUB_OUTPUT
          echo "Package version $LATEST"
-         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
+         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') >> $GITHUB_OUTPUT
          echo "package.json version $PACKAGE_VERSION"
-         
+     - name: check equality
+       if: ${{ steps.vars.outputs.NPM_VERSION }} == ${{ steps.vars.outputs.PACKAGE_VERSION }}
+       run : echo "versions match !!"
