@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v1
-     - name: get package.json version
-       uses: martinbeentjes/npm-get-version-action@v1.3.1
      - name: GitHub Tag Name example
        run: |
          echo "$(pwd)"
@@ -16,4 +14,5 @@ jobs:
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
          LATEST=$(npm show aristid-ds version)
          echo "Package version $LATEST"
-         echo "${{ steps.package-json-version.outputs.current-version }}"
+         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
+         
