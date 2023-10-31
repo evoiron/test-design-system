@@ -15,4 +15,5 @@ jobs:
          LATEST=$(npm show aristid-ds version)
          echo "Package version $LATEST"
          PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
+         echo "package.json version $PACKAGE_VERSION"
          
