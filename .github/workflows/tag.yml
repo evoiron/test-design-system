@@ -6,9 +6,12 @@ jobs:
   github-example-tags:
     runs-on: ubuntu-latest
     steps:
+     - name: get package.json version
+       uses: Saionaro/extract-package-version@v1.2.1
      - name: GitHub Tag Name example
        run: |
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
          LATEST=$(npm show aristid-ds version)
          echo "Package version $LATEST"
+         echo ${{ steps.extract_version.outputs.version }}
