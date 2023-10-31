@@ -11,9 +11,9 @@ jobs:
        run: yarn && yarn build-storybook
      - name: upload artifact
        uses: actions/upload-artifact@v3
-         with:
-           name: storybook
-           path: ./storybook-static
+       with:
+         name: storybook
+         path: ./storybook-static
      - name: GitHub Tag Name example
        run: |
          echo "$(pwd)"
