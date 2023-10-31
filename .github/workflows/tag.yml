@@ -10,6 +10,7 @@ jobs:
        uses: Saionaro/extract-package-version@v1.2.1
      - name: GitHub Tag Name example
        run: |
+         echo "$(pwd)"
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
          LATEST=$(npm show aristid-ds version)
