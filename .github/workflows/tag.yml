@@ -11,9 +11,9 @@ jobs:
        uses: martinbeentjes/npm-get-version-action@v1.3.1
      - name: GitHub Tag Name example
        run: |
-         echo "$(pwd)"
-         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+         echo "$(pwd)" >> $GITHUB_OUTPUT
+         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME" >> $GITHUB_OUTPUT
+         echo "Tag name from github.ref_name: ${{  github.ref_name }}" >> $GITHUB_OUTPUT
          LATEST=$(npm show aristid-ds version)
-         echo "Package version $LATEST"
-         echo "${{ steps.package-json-version.outputs.current-version }}"
+         echo "Package version $LATEST" >> $GITHUB_OUTPUT
+         echo "${{ steps.package-json-version.outputs.current-version }}" >> $GITHUB_OUTPUT
