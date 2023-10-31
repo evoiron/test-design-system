@@ -23,5 +23,5 @@ jobs:
          echo "${{ env.NPM_VERSION }}"
          echo "${{ env.PACKAGE_VERSION }}"
      - name: check equality
-       if: ${{ env.NPM_VERSION }} == ${{ env.PACKAGE_VERSION }}
-       run : echo "versions match !!"
+       if: ${{ env.NPM_VERSION }} != ${{ env.PACKAGE_VERSION }}
+       run : echo "versions mismatch !!"
