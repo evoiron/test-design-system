@@ -16,6 +16,10 @@ jobs:
          echo "Package version $LATEST"
          PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') >> $GITHUB_OUTPUT
          echo "package.json version $PACKAGE_VERSION"
+     - name: print values
+       run: |
+         echo "${{ steps.vars.outputs.NPM_VERSION }}"
+         echo "${{ steps.vars.outputs.PACKAGE_VERSION }}"
      - name: check equality
        if: ${{ steps.vars.outputs.NPM_VERSION }} == ${{ steps.vars.outputs.PACKAGE_VERSION }}
        run : echo "versions match !!"
