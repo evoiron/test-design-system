@@ -10,3 +10,5 @@ jobs:
        run: |
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+         LATEST=$(npm show --json aristid-ds version)
+         echo "Package version $LATEST"
