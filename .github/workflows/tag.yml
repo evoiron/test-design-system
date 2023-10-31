@@ -12,9 +12,11 @@ jobs:
          echo "$(pwd)"
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-         NPM_VERSION=$(npm show aristid-ds version) >> $GITHUB_ENV
+         NPM_VERSION=$(npm show aristid-ds version)
+         echo "NPM_VERSION=$NPM_VERSION" >> $GITHUB_ENV
          echo "Package version $LATEST"
-         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') >> $GITHUB_ENV
+         PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
+         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
          echo "package.json version $PACKAGE_VERSION"
      - name: print values
        run: |
