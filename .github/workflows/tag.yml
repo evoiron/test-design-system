@@ -6,6 +6,7 @@ jobs:
   github-example-tags:
     runs-on: ubuntu-latest
     steps:
+     - uses: actions/checkout@v1
      - name: get package.json version
        uses: Saionaro/extract-package-version@v1.2.1
      - name: GitHub Tag Name example
