@@ -16,4 +16,4 @@ jobs:
          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
          LATEST=$(npm show aristid-ds version)
          echo "Package version $LATEST"
-         echo "${{ steps.package-version.outputs.current-version }}"
+         echo "${{ steps.package-json-version.outputs.current-version }}"
