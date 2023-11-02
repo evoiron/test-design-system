@@ -38,7 +38,7 @@ export const Secondary: Story = {
 
 export const Large: Story = {
   args: {
-    backgroundColor: "yellow",
+    backgroundColor: "green",
     size: "large",
     label: "Button"
   }
