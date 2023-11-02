@@ -1,0 +1,15 @@
+name: "Test"
+
+# Event for the workflow
+on:
+  pull_request:
+    branches:
+      - 'feature/**'
+
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - run: echo "kikoo"
