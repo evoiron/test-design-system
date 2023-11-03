@@ -9,6 +9,7 @@ on:
 
 jobs:
   chromatic-deployment:
+    if: github.event_name == 'workflow_dispatch'
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
