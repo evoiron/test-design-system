@@ -14,7 +14,7 @@ on:
 
 jobs:
   eslint:
-    uses: evoiron/test-design-system/.gihub/workflows/eslint.yml@main
+    uses: ./.gihub/workflows/eslint.yml@main
   chromatic:
     if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: eslint
