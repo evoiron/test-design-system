@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button} from './Button';
 import './header.css';
-import {Link} from './Link';
+// import {Link} from './Link';
 
 type User = {
     name: string;
@@ -15,7 +15,7 @@ interface HeaderProps {
     onCreateAccount: () => void;
 }
 
-export const test = () => console.log('toto');
+// export const test = () => console.log('toto');
 
 export const Header = ({user, onLogin, onLogout, onCreateAccount}: HeaderProps) => (
     <header>
