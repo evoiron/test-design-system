@@ -22,12 +22,12 @@ jobs:
   publish-storybook:
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'main'
-    uses: ./.github/workflows/storybook.yml
-    with:
-      name: 'stprybook-main'
+    - uses: ./.github/workflows/storybook.yml
+      with:
+        name: 'stprybook-main'
   publish-storybook-dev:
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'develop'
-    uses: ./.github/workflows/storybook.yml
-    with:
-      name: 'storybook-develop'
+    - uses: ./.github/workflows/storybook.yml
+      with:
+        name: 'storybook-develop'
