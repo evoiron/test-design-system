@@ -19,7 +19,7 @@ jobs:
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
-          echo ${{ input.name }}
+          echo ${{ inputs.name }}
       - uses: actions/checkout@v1
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm

@@ -14,20 +14,20 @@ on:
 
 jobs:
   eslint:
-    uses: .gihub/workflows/eslint.yml
+    uses: ./.github/workflows/eslint.yml
   chromatic:
     if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: eslint
-    uses: .github/workflows/chromatic.yml
-  publish-storybook:
-    needs: eslint
+    uses: ./.github/workflows/chromatic.yml
+  storybook:
     if: github.event_name == 'push' && github.ref_name == 'main'
-    uses: .github/workflows/storybook.yml
-    with:
-      name: main
-  publish-storybook-dev:
     needs: eslint
-    if: github.event_name == 'push' && github.ref_name == 'develop'
-    uses: .github/workflows/storybook.yml
+    uses: ./.github/workflows/storybook.yml
     with:
-      name: main
+      name: 'stprybook-main'
+  storybook-dev:
+    if: github.event_name == 'push' && github.ref_name == 'develop'
+    needs: eslint
+    uses: ./.github/workflows/storybook.yml
+    with:
+      name: 'storybook-develop'
