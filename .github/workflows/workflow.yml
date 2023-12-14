@@ -34,7 +34,7 @@ jobs:
         run: echo 'publish to chromatic'
   publish-storybook:
     runs-on: ubuntu-latest
-    need: eslint
+    needs: eslint
     if: github.event_name == 'push' && github.github_ref == "main"
     steps:
       - uses: actions/checkout@v1
@@ -46,7 +46,7 @@ jobs:
         run: echo 'publish storybook main'
   publish-storybook-dev:
     runs-on: ubuntu-latest
-    need: eslint
+    needs: eslint
     if: github.event_name == 'push' && github.github_ref == "develop"
     steps:
       - uses: actions/checkout@v1
