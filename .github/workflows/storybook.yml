@@ -1,0 +1,29 @@
+# .github/workflows/chromatic.yml
+
+# Workflow name
+name: "Chromatic"
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+
+jobs:
+  publish-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print variables
+        run: |
+          echo ${{ github.event_name}}
+          echo ${{ github.ref_name}}
+          echo ${{ input.name }}
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
+        run: yarn
+        # 👇 Adds Chromatic as a step in the workflow
+      - name: publish storybook main
+        run: echo 'publish storybook main'

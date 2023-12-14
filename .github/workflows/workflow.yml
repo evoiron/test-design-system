@@ -1,7 +1,7 @@
-# .github/workflows/Eslint.yml
+# .github/workflows/workflow.yml
 
 # Workflow name
-name: "Eslint"
+name: "Workflow"
 
 on:
   workflow_dispatch:
@@ -14,49 +14,20 @@ on:
 
 jobs:
   eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: "variables"
-        run: |
-          echo ${{ github.event_name}}
-          echo ${{ github.ref_name}}
-      - name: run eslint
-        run: yarn && yarn lint
+    uses: ./.gihub/workflows/eslint.yml
   chromatic:
-    runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: eslint
-    # Job steps
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish to Chromatic
-        run: echo 'publish to chromatic'
+    uses: ./.github/workflows/chromatic.yml
   publish-storybook:
-    runs-on: ubuntu-latest
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'main'
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
-      - name: publish storybook main
-        run: echo 'publish storybook main'
+    uses: ./.github/workflows/storybook.yml
+    with:
+      name: main
   publish-storybook-dev:
-    runs-on: ubuntu-latest
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'develop'
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish storybook dev
-        run: echo 'publish storybook dev'
+    uses: ./.github/workflows/storybook.yml
+    with:
+      name: main
