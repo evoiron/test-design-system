@@ -1,0 +1,58 @@
+# .github/workflows/Eslint.yml
+
+# Workflow name
+name: "Eslint"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - 'develop'
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: run eslint
+          run: yarn && yarn lint
+  chromatic:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.github.ref == "develop"
+    needs: eslint
+    # Job steps
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
+        run: yarn
+        # 👇 Adds Chromatic as a step in the workflow
+      - name: Publish to Chromatic
+        run: echo 'publish to chromatic'
+  publish-storybook:
+    runs-on: ubuntu-latest
+    need: eslint
+    if: github.event_name == 'push' && github.github_ref == "main"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
+        run: yarn
+        # 👇 Adds Chromatic as a step in the workflow
+      - name: publish storybook main
+        run: echo 'publish storybook main'
+  publish-storybook-dev:
+    runs-on: ubuntu-latest
+    need: eslint
+    if: github.event_name == 'push' && github.github_ref == "develop"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
+        run: yarn
+        # 👇 Adds Chromatic as a step in the workflow
+      - name: Publish storybook dev
+        run: echo 'publish storybook dev'
