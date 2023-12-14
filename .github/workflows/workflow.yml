@@ -15,10 +15,10 @@ on:
 jobs:
   eslint:
     runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - name: run eslint
-          run: yarn && yarn lint
+    steps:
+      - uses: actions/checkout@v4
+      - name: run eslint
+        run: yarn && yarn lint
   chromatic:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.github.ref == "develop"
