@@ -21,7 +21,7 @@ jobs:
   chromatic-deployment:
     # Operating System
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
+    if: github.event.workflow_run.event == 'pull_request'
     # Job steps
     steps:
       - uses: actions/checkout@v1
