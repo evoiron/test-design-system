@@ -14,20 +14,20 @@ on:
 
 jobs:
   eslint:
-    uses: eslint.yml@main
+    uses: evoiron/test-design-system/.gihub/workflows/eslint.yml@main
   chromatic:
     if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: eslint
-    uses: chromatic.yml@main
+    uses: evoiron/test-design-system/.github/workflows/chromatic.yml@main
   publish-storybook:
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'main'
-    uses: storybook.yml@main
+    uses: evoiron/test-design-system/.github/workflows/storybook.yml@main
     with:
       name: main
   publish-storybook-dev:
     needs: eslint
     if: github.event_name == 'push' && github.ref_name == 'develop'
-    uses: storybook.yml@main
+    uses: evoiron/test-design-system/.github/workflows/storybook.yml@main
     with:
       name: main
