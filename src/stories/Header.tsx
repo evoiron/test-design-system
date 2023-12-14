@@ -15,6 +15,8 @@ interface HeaderProps {
     onCreateAccount: () => void;
 }
 
+export const test = () => console.log('toto');
+
 export const Header = ({user, onLogin, onLogout, onCreateAccount}: HeaderProps) => (
     <header>
         <div className="storybook-header">

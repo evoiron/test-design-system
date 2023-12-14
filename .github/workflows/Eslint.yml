@@ -18,4 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: run eslint
-        run: yarn && yarn eslint
+        run: yarn && yarn lint
