@@ -25,7 +25,7 @@ jobs:
         run: yarn && yarn lint
   chromatic:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.ref == 'develop'
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: eslint
     # Job steps
     steps:
