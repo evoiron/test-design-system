@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: get archive name
         run: |
-          [[ github.ref_name = 'develop' ]] && a='storybook-dev' || a='storybook-main' }}
+          [[ ${{github.ref_name}} = "develop" ]] && a="storybook-dev'"" || a="storybook-main" }}
           echo "archive_name=$a" >> $GITHUB_OUTPUT
       - name: print variables
         run: |
