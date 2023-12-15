@@ -6,16 +6,16 @@ name: "Storybook"
 on:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      name:
-        required: true
-        type: string
+    # inputs:
+    #   name:
+    #     required: true
+    #     type: string
 
 env:
-  name: ${{ github.ref_name == 'develop' && 'dev' || 'main' }}
+  name: ${{ github.ref_name == 'develop' && 'storybook-dev' || 'storybook-main' }}
 
 jobs:
-  publish-storybook:
+  publish:
     runs-on: ubuntu-latest
     if: github.ref_name == 'develop' || github.ref_name == 'main'
     steps:
