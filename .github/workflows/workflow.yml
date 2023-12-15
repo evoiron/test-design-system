@@ -20,14 +20,14 @@ jobs:
     needs: eslint
     uses: ./.github/workflows/chromatic.yml
   storybook:
-    if: github.event_name == 'push' && github.ref_name == 'main'
+    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
     needs: eslint
     uses: ./.github/workflows/storybook.yml
-    with:
-      name: 'stprybook-main'
-  storybook-dev:
-    if: github.event_name == 'push' && github.ref_name == 'develop'
-    needs: eslint
-    uses: ./.github/workflows/storybook.yml
-    with:
-      name: 'storybook-develop'
+    # with:
+    #   name: 'stprybook-main'
+  # storybook-dev:
+  #   if: github.event_name == 'push' && github.ref_name == 'develop'
+  #   needs: eslint
+  #   uses: ./.github/workflows/storybook.yml
+  #   with:
+  #     name: 'storybook-develop'
