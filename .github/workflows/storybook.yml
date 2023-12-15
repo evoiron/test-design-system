@@ -18,7 +18,7 @@ on:
 jobs:
   publish-storybook:
     runs-on: ubuntu-latest
-    if: github.ref_name = 'develop' || github.ref_name = 'main'
+    if: github.ref_name == 'develop' || github.ref_name == 'main'
     steps:
       - name: get archive name
         run: |
