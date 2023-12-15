@@ -18,12 +18,18 @@ on:
 jobs:
   publish-storybook:
     runs-on: ubuntu-latest
+    if: github.ref_name = 'develop' || github.ref_name = 'main'
     steps:
+      - name: get archive name
+        run: |
+          [[ github.ref_name = 'develop' ]] && a='storybook-dev' || a='storybook-main' }}
+          echo "archive_name=$a" >> $GITHUB_OUTPUT
       - name: print variables
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
           echo ${{ inputs.name }}
+          echo ${{ steps.vars.outputs.archive_name }}
       - uses: actions/checkout@v1
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
