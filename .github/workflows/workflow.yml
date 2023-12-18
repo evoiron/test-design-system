@@ -25,7 +25,7 @@ jobs:
           echo ${{ inputs.name }}
           echo ${{ env.name }}
       - name: test
-        if: startWith(github.ref, 'refs/tag')
+        if: startsWith(github.ref, 'refs/tag')
         run: echo 'youhou'
   # eslint:
   #   uses: ./.github/workflows/eslint.yml
