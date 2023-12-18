@@ -13,16 +13,26 @@ on:
       - 'develop'
 
 jobs:
-  eslint:
-    uses: ./.github/workflows/eslint.yml
-  chromatic:
-    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
-    needs: eslint
-    uses: ./.github/workflows/chromatic.yml
-  storybook:
-    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
-    needs: eslint
-    uses: ./.github/workflows/storybook.yml
+  pretest:
+    - name: print variables
+        run: |
+          echo ${{ github.event_name}}
+          echo ${{ github.ref_name}}
+          echo ${{ github.re }}
+          echo ${{ github}}
+  test:
+    if: startWith(github.ref, 'refs/tag')
+    run: echo 'youhou'
+  # eslint:
+  #   uses: ./.github/workflows/eslint.yml
+  # chromatic:
+  #   if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+  #   needs: eslint
+  #   uses: ./.github/workflows/chromatic.yml
+  # storybook:
+  #   if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
+  #   needs: eslint
+  #   uses: ./.github/workflows/storybook.yml
     # with:
     #   name: 'stprybook-main'
   # storybook-dev:

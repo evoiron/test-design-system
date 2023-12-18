@@ -10,6 +10,7 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     # Job steps
     steps:
       - uses: actions/checkout@v1
