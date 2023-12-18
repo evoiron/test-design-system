@@ -8,21 +8,23 @@ on:
   push:
     branches:
       - '*'
+    tags:
+      - '*'
   pull_request:
     branches:
       - 'develop'
 
 jobs:
-  pretest:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: print variables
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
-          echo ${{ github.re }}
-          echo ${{ github}}
-      -name: test
+          echo ${{ inputs.name }}
+          echo ${{ env.name }}
+      - name: test
         if: startWith(github.ref, 'refs/tag')
         run: echo 'youhou'
   # eslint:
