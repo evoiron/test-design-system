@@ -14,15 +14,16 @@ on:
 
 jobs:
   pretest:
-    - name: print variables
+    steps:
+      - name: print variables
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
           echo ${{ github.re }}
           echo ${{ github}}
-  test:
-    if: startWith(github.ref, 'refs/tag')
-    run: echo 'youhou'
+      -name: test
+        if: startWith(github.ref, 'refs/tag')
+        run: echo 'youhou'
   # eslint:
   #   uses: ./.github/workflows/eslint.yml
   # chromatic:
