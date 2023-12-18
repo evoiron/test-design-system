@@ -14,6 +14,7 @@ on:
 
 jobs:
   pretest:
+    runs-on: ubuntu-latest
     steps:
       - name: print variables
         run: |
