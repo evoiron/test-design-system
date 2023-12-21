@@ -27,12 +27,12 @@ jobs:
       - name: test
         if: startsWith(github.ref, 'refs/tag')
         run: echo 'youhou'
-  # eslint:
-  #   uses: ./.github/workflows/eslint.yml
-  # chromatic:
-  #   if: github.event_name == 'pull_request' && github.base_ref == 'develop'
-  #   needs: eslint
-  #   uses: ./.github/workflows/chromatic.yml
+  eslint:
+    uses: ./.github/workflows/eslint.yml
+  chromatic:
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop' && contains(github.event.pull_request.labels.*.name, 'chromatic')
+    needs: eslint
+    uses: ./.github/workflows/chromatic.yml
   # storybook:
   #   if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
   #   needs: eslint
