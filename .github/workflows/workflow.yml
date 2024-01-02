@@ -26,6 +26,7 @@ jobs:
           echo ${{ github.ref}}
           echo ${{ github}}
           echo ${{github.event.pull_request.draft}}
+          echo ${{github.event.pull_request.converted_to_draft}}
       - name: test
         if: startsWith(github.ref, 'refs/tag')
         run: echo 'youhou'
