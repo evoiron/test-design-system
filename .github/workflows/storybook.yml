@@ -16,7 +16,7 @@ env:
 
 jobs:
   publish:
-    name: publish ${{ env.name }}
+    name: publish ${{ github.ref_name }}
     runs-on: ubuntu-latest
     if: github.ref_name == 'develop' || github.ref_name == 'main'
     steps:
