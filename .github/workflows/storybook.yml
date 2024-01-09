@@ -16,6 +16,7 @@ env:
 
 jobs:
   publish:
+    name: $${{env.name}}
     runs-on: ubuntu-latest
     if: github.ref_name == 'develop' || github.ref_name == 'main'
     steps:
@@ -30,5 +31,5 @@ jobs:
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
         run: yarn
         # 👇 Adds Chromatic as a step in the workflow
-      - name: publish storybook main
-        run: echo 'publish storybook main'
+      - name: publish storybook
+        run: echo 'publish storybook'
