@@ -12,7 +12,8 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.base_ref == 'develop' && contains(github.event.pull_request.labels.*.name, 'chromatic')
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop' && github.event.pull_request.label.name == 'chromatic'
+    # if: github.event_name == 'pull_request' && github.base_ref == 'develop' && contains(github.event.pull_request.labels.*.name, 'chromatic')
     # Job steps
     steps:
       - uses: actions/checkout@v1
