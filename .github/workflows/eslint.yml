@@ -10,14 +10,21 @@ on:
 jobs:
   eslint:
     runs-on: ubuntu-latest
+    outputs:
+      nightly_version: ${{ steps.version.outputs.next_version }}
     steps:
       - uses: actions/checkout@v4
       - name: "variables"
+        id: version
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
           echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
           echo "next_version=$(cat package.json | jq -r '.version')-$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "next_version=$(cat package.json | jq -r '.version')-$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_OUTPUT"
+      - name: Set color
+        id: color-selector
+        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
       
       - name: "variables 2"
         run: |
@@ -31,6 +38,12 @@ jobs:
         run: |
           echo "${{ env.sho_short }} - ${{ env.npm_version }}"
           echo "${{ steps.check.outputs.exists }}"
+    next:
+      needs: eslint
+      uses: actions/checkout@v4
+      steps:
+        - name: variables
+          run: echo "${{needs.eslint.outputs.nightly_version}}"
         
       #- name: Update package.json version
        # uses: jossef/action-set-json-field@v2.1
