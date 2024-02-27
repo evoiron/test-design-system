@@ -39,11 +39,11 @@ jobs:
           echo "${{ env.sho_short }} - ${{ env.npm_version }}"
           echo "${{ steps.check.outputs.exists }}"
   next:
-     needs: eslint
-     uses: actions/checkout@v4
-     steps:
-       - name: variables
-         run: echo "${{needs.eslint.outputs.nightly_version}}"
+    needs: eslint
+    uses: actions/checkout@v4
+    steps:
+      - name: variables
+        run: echo "${{needs.eslint.outputs.nightly_version}}"
         
       #- name: Update package.json version
        # uses: jossef/action-set-json-field@v2.1
@@ -64,5 +64,5 @@ jobs:
     #    uses: ad-m/github-push-action@v0.6.0
     #    with:
     #      github_token: ${{ github.token }}
-      - name: run eslint
-        run: yarn && yarn lint
+      # - name: run eslint
+      #   run: yarn && yarn lint
