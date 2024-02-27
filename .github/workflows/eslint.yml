@@ -38,12 +38,12 @@ jobs:
         run: |
           echo "${{ env.sho_short }} - ${{ env.npm_version }}"
           echo "${{ steps.check.outputs.exists }}"
-    next:
-      needs: eslint
-      uses: actions/checkout@v4
-      steps:
-        - name: variables
-          run: echo "${{needs.eslint.outputs.nightly_version}}"
+  next:
+     needs: eslint
+     uses: actions/checkout@v4
+     steps:
+       - name: variables
+         run: echo "${{needs.eslint.outputs.nightly_version}}"
         
       #- name: Update package.json version
        # uses: jossef/action-set-json-field@v2.1
