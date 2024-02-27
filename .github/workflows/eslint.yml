@@ -29,7 +29,7 @@ jobs:
         uses: tehpsalmist/npm-publish-status-action@v1
       - name: "variables 3"
         run: |
-          echo "${{ env.sho_short }} - ${{ env.npm_version }}
+          echo "${{ env.sho_short }} - ${{ env.npm_version }}"
           echo "${{ steps.check.outputs.exists }}"
         
       #- name: Update package.json version
