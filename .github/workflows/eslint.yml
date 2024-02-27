@@ -17,6 +17,9 @@ jobs:
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
           echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "version=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo $(cat package.json | jq -r '.version')
+          
       - name: "variables 2"
         run: |
           echo "Sha: ${{ env.sha_short }}"
