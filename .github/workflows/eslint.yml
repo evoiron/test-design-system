@@ -14,6 +14,8 @@ jobs:
       nightly_version: ${{ steps.version.outputs.next_version }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 'develop'
       - name: "variables"
         id: version
         run: |
