@@ -15,12 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 'develop'
+          ref: develop
       - name: "variables"
         id: version
         run: |
           echo ${{ github.event_name}}
           echo ${{ github.ref_name}}
+          echo $(git rev-parse --abbrev-ref HEAD)
           echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
           echo "next_version=$(cat package.json | jq -r '.version')-$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
           echo "next_version=$(cat package.json | jq -r '.version')-$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_OUTPUT"
