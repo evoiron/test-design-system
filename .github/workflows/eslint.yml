@@ -18,10 +18,14 @@ jobs:
           echo ${{ github.ref_name}}
           echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
           echo "$(cat package.json | jq -r '.version')-$(git rev-parse --short "$GITHUB_SHA")"
-          
+      
+      - name: get-npm-version
+        id: package-version
+        uses: aristid-ds@latest
       - name: "variables 2"
         run: |
           echo "Sha: ${{ env.sha_short }}"
+          echo "${{ steps.package-version.outputs.current-version}}"
       #- name: Update package.json version
        # uses: jossef/action-set-json-field@v2.1
        # with:
