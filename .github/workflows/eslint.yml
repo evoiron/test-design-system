@@ -21,7 +21,7 @@ jobs:
       
       - name: get-npm-version
         id: package-version
-        uses: aristid-ds@latest
+        uses: react@next
       - name: "variables 2"
         run: |
           echo "Sha: ${{ env.sha_short }}"
