@@ -22,7 +22,7 @@ jobs:
       - name: "variables 2"
         run: |
           echo "Sha: ${{ env.sha_short }}"
-          echo "Sha: ${{ env.next_version }}"
+          echo "Shanext: ${{ env.next_version }}"
           echo "npm_version=$(npm view react@next version)" >> "$GITHUB_ENV"
       - name: Check publish status
         id: check
