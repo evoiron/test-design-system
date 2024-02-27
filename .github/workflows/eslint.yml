@@ -40,7 +40,7 @@ jobs:
           echo "${{ steps.check.outputs.exists }}"
   next:
     needs: eslint
-    uses: actions/checkout@v4
+    runs-on: ubuntu-latest
     steps:
       - name: variables
         run: echo "${{needs.eslint.outputs.nightly_version}}"
