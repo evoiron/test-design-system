@@ -1,0 +1,11 @@
+name: "Publish nightly Package to npmjs cron task"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  nightly:
+    uses: ./.github/workflows/nightly.yml
+    secrets: inherit
