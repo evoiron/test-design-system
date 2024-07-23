@@ -8,6 +8,4 @@ on:
 jobs:
   nightly:
     uses: ./.github/workflows/nightly.yml
-    with:
-      ref: 'develop'
     secrets: inherit
