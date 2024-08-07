@@ -13,6 +13,7 @@ on:
   pull_request:
     branches:
       - 'develop'
+    types: [synchronize, labeled, converted_to_draft, ready_for_review]
 
 jobs:
   publish:
@@ -24,13 +25,15 @@ jobs:
           echo ${{ github.ref_name}}
           echo ${{ github.ref}}
           echo ${{ github}}
+          echo ${{github.event.pull_request.draft}}
+          echo $${{github.event.action}}
       - name: test
         if: startsWith(github.ref, 'refs/tag')
         run: echo 'youhou'
   # eslint:
   #   uses: ./.github/workflows/eslint.yml
   # chromatic:
-  #   if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+  #   if: github.event_name == 'pull_request' && github.base_ref == 'develop' && contains(github.event.pull_request.labels.*.name, 'chromatic')
   #   needs: eslint
   #   uses: ./.github/workflows/chromatic.yml
   # storybook:
