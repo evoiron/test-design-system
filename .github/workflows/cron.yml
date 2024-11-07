@@ -5,7 +5,7 @@ on:
     - cron: '0/10 * * * *'
   workflow_dispatch:
       secrets:
-            NPM_TOKEN:
+            TEST_SECRET:
                 description: 'Npm Token'
                 required: false
 
