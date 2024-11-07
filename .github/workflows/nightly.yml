@@ -5,6 +5,10 @@ name: "Publish nightly Package to npmjs"
 
 on:
     workflow_call:
+        secrets:
+            TEST_SECRET:
+                description: 'Npm Token'
+                required: false
     workflow_dispatch:
         secrets:
             TEST_SECRET:
