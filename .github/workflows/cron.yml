@@ -12,5 +12,4 @@ on:
 jobs:
   nightly:
     uses: ./.github/workflows/nightly.yml
-    secrets:
-      TEST_SECRET: ${{secrets.TEST_SECRET}}
+    secrets: inherit
