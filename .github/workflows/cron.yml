@@ -8,5 +8,5 @@ on:
 jobs:
   nightly:
     uses: ./.github/workflows/nightly.yml
-    with:
+    secrets:
       TEST_SECRET: ${secrets.TEST_SECRET}
