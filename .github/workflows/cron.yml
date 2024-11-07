@@ -1,9 +1,13 @@
 name: "Publish nightly Package to npmjs cron task"
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '0/10 * * * *'
+  workflow_dispatch:
+      secrets:
+            NPM_TOKEN:
+                description: 'Npm Token'
+                required: false
 
 jobs:
   nightly:
